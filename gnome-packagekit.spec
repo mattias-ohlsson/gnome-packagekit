@@ -7,7 +7,7 @@ Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
-Source0:   http://download.gnome.org/sources/gnome-packagekit/2.91/%{name}-%{version}.tar.gz
+Source0:   http://download.gnome.org/sources/gnome-packagekit/2.91/%{name}-%{version}.tar.bz2
 
 Requires:  gnome-icon-theme
 Requires:  dbus-x11 >= 1.1.2
@@ -74,19 +74,12 @@ make install DESTDIR=$RPM_BUILD_ROOT
 # nuke the ChangeLog file, it's huge
 rm -f $RPM_BUILD_ROOT%{_datadir}/doc/gnome-packagekit-*/ChangeLog
 
-desktop-file-install --delete-original                   \
-  --dir=$RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart/                    \
-  $RPM_BUILD_ROOT%{_datadir}/gnome/autostart/gpk-update-icon.desktop
-
 for i in gpk-application gpk-update-viewer gpk-install-file gpk-log gpk-prefs ; do
   desktop-file-install --delete-original                                \
     --dir=$RPM_BUILD_ROOT%{_datadir}/applications/                      \
     $RPM_BUILD_ROOT%{_datadir}/applications/$i.desktop
 done
 
-
-rm -f $RPM_BUILD_ROOT%{_libdir}/control-center-1/panels/*.a
-rm -f $RPM_BUILD_ROOT%{_libdir}/control-center-1/panels/*.la
 
 %find_lang %name --with-gnome
 
@@ -112,7 +105,6 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING NEWS README
 %{_bindir}/gpk-*
-%{_libdir}/control-center-1/panels/*.so
 %dir %{_datadir}/gnome-packagekit
 %{_datadir}/gnome-packagekit/gpk-*.ui
 %dir %{_datadir}/gnome-packagekit/icons
@@ -127,7 +119,6 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/gnome/help/gnome-packagekit
 %{python_sitelib}/packagekit/*py*
 %{_datadir}/omf/gnome-packagekit
-%{_sysconfdir}/xdg/autostart/gpk-update-icon.desktop
 %{_datadir}/applications/gpk-*.desktop
 %{_datadir}/dbus-1/services/org.freedesktop.PackageKit.service
 %{_datadir}/glib-2.0/schemas/org.gnome.packagekit.gschema.xml
