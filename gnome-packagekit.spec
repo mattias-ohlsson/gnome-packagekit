@@ -2,8 +2,8 @@
 
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
-Version:   2.91.5
-Release:   4%{?dist}
+Version:   2.91.92
+Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
@@ -74,11 +74,7 @@ make install DESTDIR=$RPM_BUILD_ROOT
 # nuke the ChangeLog file, it's huge
 rm -f $RPM_BUILD_ROOT%{_datadir}/doc/gnome-packagekit-*/ChangeLog
 
-desktop-file-install --delete-original                   \
-  --dir=$RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart/                    \
-  $RPM_BUILD_ROOT%{_datadir}/gnome/autostart/gpk-update-icon.desktop
-
-for i in gpk-application gpk-update-viewer gpk-install-file gpk-log gpk-prefs ; do
+for i in gpk-application gpk-update-viewer gpk-install-local-file gpk-log gpk-prefs ; do
   desktop-file-install --delete-original                                \
     --dir=$RPM_BUILD_ROOT%{_datadir}/applications/                      \
     $RPM_BUILD_ROOT%{_datadir}/applications/$i.desktop
@@ -112,7 +108,6 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING NEWS README
 %{_bindir}/gpk-*
-%{_libdir}/control-center-1/panels/*.so
 %dir %{_datadir}/gnome-packagekit
 %{_datadir}/gnome-packagekit/gpk-*.ui
 %dir %{_datadir}/gnome-packagekit/icons
@@ -127,7 +122,6 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/gnome/help/gnome-packagekit
 %{python_sitelib}/packagekit/*py*
 %{_datadir}/omf/gnome-packagekit
-%{_sysconfdir}/xdg/autostart/gpk-update-icon.desktop
 %{_datadir}/applications/gpk-*.desktop
 %{_datadir}/dbus-1/services/org.freedesktop.PackageKit.service
 %{_datadir}/glib-2.0/schemas/org.gnome.packagekit.gschema.xml
@@ -136,6 +130,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/gnome-settings-daemon-3.0/gtk-modules/gpk-pk-gtk-module.desktop
 
 %changelog
+* Mon Mar 21 2011 Richard Hughes  <rhughes@redhat.com> - 2.91.92-1
+- New upstream release.
+
 * Fri Feb 11 2011 Matthias Clasen <mclasen@redhat.com> - 2.91.5-4
 - Rebuild against newer gtk
 
