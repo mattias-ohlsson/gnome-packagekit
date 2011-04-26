@@ -3,13 +3,14 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
 Version:   3.0.0
-Release:   1%{?dist}
+Release:   2%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
 Source0:   http://download.gnome.org/sources/gnome-packagekit/2.91/%{name}-%{version}.tar.gz
 
 Requires:  gnome-icon-theme
+Requires:  gnome-settings-deamon
 Requires:  dbus-x11 >= 1.1.2
 Requires:  PackageKit >= 0.5.0
 Requires:  PackageKit-libs >= 0.5.0
@@ -126,6 +127,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/gnome-settings-daemon-3.0/gtk-modules/gpk-pk-gtk-module.desktop
 
 %changelog
+* Tue Apr 26 2011 Richard Hughes <rhughes@redhat.com> - 3.0.0-2
+- Add requires of gnome-settings-daemon to fix #683145
+
 * Mon Apr 04 2011 Richard Hughes <rhughes@redhat.com> - 3.0.0-1
 - New upstream version.
 
