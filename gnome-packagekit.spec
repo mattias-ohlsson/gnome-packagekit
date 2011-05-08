@@ -3,7 +3,7 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
 Version:   3.0.0
-Release:   2%{?dist}
+Release:   3%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
@@ -84,21 +84,21 @@ done
 %find_lang %name --with-gnome
 
 %post
-touch --no-create %{_datadir}/icons/hicolor
-if [ -x /usr/bin/gtk-update-icon-cache ]; then
-    gtk-update-icon-cache -q %{_datadir}/icons/hicolor &> /dev/null || :
-fi
+touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
 update-desktop-database %{_datadir}/applications &> /dev/null || :
 update-mime-database %{_datadir}/mime &> /dev/null || :
-glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 %postun
-touch --no-create %{_datadir}/icons/hicolor
-if [ -x /usr/bin/gtk-update-icon-cache ]; then
-    gtk-update-icon-cache -q %{_datadir}/icons/hicolor &> /dev/null || :
+if [ $1 -eq 0 ] ; then
+    touch --no-create %{_datadir}/icons/hicolor &>/dev/null
+    gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
+    glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 fi
 update-desktop-database %{_datadir}/applications &> /dev/null || :
 update-mime-database %{_datadir}/mime &> /dev/null || :
+
+%posttrans
+gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 %files -f %{name}.lang
@@ -127,6 +127,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/gnome-settings-daemon-3.0/gtk-modules/gpk-pk-gtk-module.desktop
 
 %changelog
+* Sat May 07 2011 Christopher Aillon <caillon@redhat.com> - 3.0.0-3
+- Update icon cache and gsettings scriptlets
+
 * Tue Apr 26 2011 Richard Hughes <rhughes@redhat.com> - 3.0.0-2
 - Add requires of gnome-settings-daemon to fix #683145
 
