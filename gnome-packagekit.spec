@@ -3,17 +3,17 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
 Version:   3.0.0
-Release:   1%{?dist}
+Release:   2%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
 Source0:   http://download.gnome.org/sources/gnome-packagekit/2.91/%{name}-%{version}.tar.gz
 
 Requires:  gnome-icon-theme
+Requires:  gnome-settings-deamon
 Requires:  dbus-x11 >= 1.1.2
 Requires:  PackageKit >= 0.5.0
 Requires:  PackageKit-libs >= 0.5.0
-Requires:  PackageKit-gtk-module >= 0.5.0
 Requires:  PackageKit-device-rebind >= 0.5.0
 Requires:  shared-mime-info
 Requires:  iso-codes
@@ -81,9 +81,6 @@ for i in gpk-application gpk-update-viewer gpk-install-local-file gpk-log gpk-pr
 done
 
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/control-center-1/panels/*.a
-rm -f $RPM_BUILD_ROOT%{_libdir}/control-center-1/panels/*.la
-
 %find_lang %name --with-gnome
 
 %post
@@ -130,11 +127,22 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/gnome-settings-daemon-3.0/gtk-modules/gpk-pk-gtk-module.desktop
 
 %changelog
+* Tue Apr 26 2011 Richard Hughes <rhughes@redhat.com> - 3.0.0-2
+- Add requires of gnome-settings-daemon to fix #683145
+
 * Mon Apr 04 2011 Richard Hughes <rhughes@redhat.com> - 3.0.0-1
 - New upstream version.
 
+* Wed Mar 23 2011 Matthias Clasen <mclasen@redhat.com> - 2.91.92-2
+- Don't require PackageKit-gtk-module. It gets pulled in
+  via comps already, and it is a bit inconsistent to have a
+  dep on that package, but not the gtk3 or gstreamer modules
+
 * Mon Mar 21 2011 Richard Hughes  <rhughes@redhat.com> - 2.91.92-1
 - New upstream release.
+
+* Tue Feb 22 2011 Matthias Clasen <mclasen@redhat.com> - 2.91.90-1
+- Update to 2.91.90
 
 * Fri Feb 11 2011 Matthias Clasen <mclasen@redhat.com> - 2.91.5-4
 - Rebuild against newer gtk
