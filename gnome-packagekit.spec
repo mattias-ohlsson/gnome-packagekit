@@ -10,7 +10,7 @@ URL:       http://www.packagekit.org
 Source0:   http://download.gnome.org/sources/gnome-packagekit/2.91/%{name}-%{version}.tar.gz
 
 Requires:  gnome-icon-theme
-Requires:  gnome-settings-deamon
+Requires:  gnome-settings-daemon
 Requires:  dbus-x11 >= 1.1.2
 Requires:  PackageKit >= 0.5.0
 Requires:  PackageKit-libs >= 0.5.0
