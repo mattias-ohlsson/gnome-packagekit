@@ -2,15 +2,14 @@
 
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
-Version:   3.0.0
-Release:   3%{?dist}
+Version:   3.1.3
+Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
-Source0:   http://download.gnome.org/sources/gnome-packagekit/2.91/%{name}-%{version}.tar.gz
+Source0:   http://download.gnome.org/sources/gnome-packagekit/3.1/%{name}-%{version}.tar.xz
 
 Requires:  gnome-icon-theme
-Requires:  gnome-settings-daemon
 Requires:  dbus-x11 >= 1.1.2
 Requires:  PackageKit >= 0.5.0
 Requires:  PackageKit-libs >= 0.5.0
@@ -41,7 +40,6 @@ BuildRequires: cairo-devel
 BuildRequires: startup-notification-devel
 BuildRequires: perl(XML::Parser)
 BuildRequires: gnome-doc-utils
-BuildRequires: gnome-menus-devel >= 2.24.1
 BuildRequires: PackageKit-devel >= 0.5.0
 BuildRequires: intltool
 BuildRequires: xorg-x11-proto-devel
@@ -49,7 +47,6 @@ BuildRequires: fontconfig-devel
 BuildRequires: libcanberra-devel
 BuildRequires: libgudev1-devel
 BuildRequires: upower-devel >= 0.9.0
-BuildRequires: control-center-devel >= 2.31.4
 
 # obsolete sub-package
 Obsoletes: gnome-packagekit-extra <= 2.91.1
@@ -61,7 +58,6 @@ There are several utilities designed for installing, updating and
 removing packages on your system.
 
 %prep
-#%setup -q -n %{name}-%{version}-%{?alphatag}
 %setup -q
 
 %build
@@ -79,7 +75,6 @@ for i in gpk-application gpk-update-viewer gpk-install-local-file gpk-log gpk-pr
     --dir=$RPM_BUILD_ROOT%{_datadir}/applications/                      \
     $RPM_BUILD_ROOT%{_datadir}/applications/$i.desktop
 done
-
 
 %find_lang %name --with-gnome
 
@@ -127,6 +122,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/gnome-settings-daemon-3.0/gtk-modules/gpk-pk-gtk-module.desktop
 
 %changelog
+* Mon Jul 04 2011 Richard Hughes <rhughes@redhat.com> - 3.1.3-1
+- New upstream version.
+
 * Sat May 07 2011 Christopher Aillon <caillon@redhat.com> - 3.0.0-3
 - Update icon cache and gsettings scriptlets
 
