@@ -3,7 +3,7 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
 Version:   3.1.3
-Release:   1%{?dist}
+Release:   2%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
@@ -47,6 +47,7 @@ BuildRequires: fontconfig-devel
 BuildRequires: libcanberra-devel
 BuildRequires: libgudev1-devel
 BuildRequires: upower-devel >= 0.9.0
+BuildRequires: docbook-utils
 
 # obsolete sub-package
 Obsoletes: gnome-packagekit-extra <= 2.91.1
@@ -122,6 +123,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/gnome-settings-daemon-3.0/gtk-modules/gpk-pk-gtk-module.desktop
 
 %changelog
+* Mon Jul 04 2011 Richard Hughes <rhughes@redhat.com> - 3.1.3-2
+- BR: docbook-utils
+
 * Mon Jul 04 2011 Richard Hughes <rhughes@redhat.com> - 3.1.3-1
 - New upstream version.
 
