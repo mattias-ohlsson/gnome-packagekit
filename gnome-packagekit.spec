@@ -2,16 +2,12 @@
 
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
-Version:   3.1.92
-Release:   2%{?dist}
+Version:   3.2.0
+Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
-Source0:   http://download.gnome.org/sources/gnome-packagekit/3.1/%{name}-%{version}.tar.xz
-
-# already upstream
-Patch0:    0001-Correctly-count-the-list-of-packages-in-the-update-v.patch
-Patch1:    0001-Ensure-the-full-path-is-sent-to-PackageKit-when-inst.patch
+Source0:   http://download.gnome.org/sources/gnome-packagekit/3.2/%{name}-%{version}.tar.xz
 
 Requires:  gnome-icon-theme
 Requires:  dbus-x11 >= 1.1.2
@@ -64,8 +60,6 @@ removing packages on your system.
 
 %prep
 %setup -q
-%patch0 -p1 -b .fix-simulate
-%patch1 -p1 -b .fix-import
 
 %build
 %configure --disable-scrollkeeper
@@ -129,6 +123,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_libdir}/gnome-settings-daemon-3.0/gtk-modules/gpk-pk-gtk-module.desktop
 
 %changelog
+* Mon Sep 26 2011 Richard Hughes <rhughes@redhat.com> - 3.2.0-1
+- New upstream version.
+
 * Tue Sep 20 2011 Richard Hughes <rhughes@redhat.com> - 3.1.92-2
 - Correctly count the items in the update viewer to fix simulate.
 - Correctly import package files when downloaded in firefox.
