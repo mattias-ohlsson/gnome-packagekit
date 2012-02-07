@@ -49,6 +49,7 @@ BuildRequires: libgudev1-devel
 BuildRequires: upower-devel >= 0.9.0
 BuildRequires: docbook-utils
 BuildRequires: systemd-devel
+BuildRequires: polkit-devel
 
 # obsolete sub-package
 Obsoletes: gnome-packagekit-extra <= 2.91.1
