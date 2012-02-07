@@ -3,7 +3,7 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
 Version:   3.3.5
-Release:   1%{?dist}
+Release:   2%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
@@ -48,6 +48,7 @@ BuildRequires: libcanberra-devel
 BuildRequires: libgudev1-devel
 BuildRequires: upower-devel >= 0.9.0
 BuildRequires: docbook-utils
+BuildRequires: systemd-devel
 
 # obsolete sub-package
 Obsoletes: gnome-packagekit-extra <= 2.91.1
@@ -62,7 +63,7 @@ removing packages on your system.
 %setup -q
 
 %build
-%configure --disable-scrollkeeper
+%configure --disable-scrollkeeper --enable-systemd
 make %{?_smp_mflags}
 
 %install
@@ -122,6 +123,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/gnome-packagekit/gpk-service-pack.ui
 
 %changelog
+* Tue Feb  7 2012 Matthias Clasen <mclasen@redhat.com> - 3.3.5-2
+- Use systemd for session tracking
+
 * Mon Feb 06 2012 Richard Hughes <rhughes@redhat.com> - 3.3.5-1
 - New upstream version.
 
