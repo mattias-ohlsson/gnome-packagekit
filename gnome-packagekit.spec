@@ -2,8 +2,8 @@
 
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
-Version:   3.3.5
-Release:   2%{?dist}
+Version:   3.3.92
+Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
@@ -124,6 +124,10 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/gnome-packagekit/gpk-service-pack.ui
 
 %changelog
+* Sun Mar 18 2012 Richard Hughes <rhughes@redhat.com> - 3.3.92-1
+- New upstream version.
+- Many updated translations.
+
 * Tue Feb  7 2012 Matthias Clasen <mclasen@redhat.com> - 3.3.5-2
 - Use systemd for session tracking
 
