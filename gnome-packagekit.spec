@@ -2,12 +2,12 @@
 
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
-Version:   3.3.92
+Version:   3.4.0
 Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
-Source0:   http://download.gnome.org/sources/gnome-packagekit/3.3/%{name}-%{version}.tar.xz
+Source0:   http://download.gnome.org/sources/gnome-packagekit/3.4/%{name}-%{version}.tar.xz
 
 Requires:  gnome-icon-theme
 Requires:  dbus-x11 >= 1.1.2
@@ -124,6 +124,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/gnome-packagekit/gpk-service-pack.ui
 
 %changelog
+* Mon Mar 26 2012 Richard Hughes <rhughes@redhat.com> - 3.4.0-1
+- New upstream version.
+
 * Sun Mar 18 2012 Richard Hughes <rhughes@redhat.com> - 3.3.92-1
 - New upstream version.
 - Many updated translations.
