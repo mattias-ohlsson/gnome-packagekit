@@ -115,9 +115,10 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/icons/hicolor/*/*/*.png
 %{_datadir}/icons/hicolor/scalable/*/*.svg*
 %{_datadir}/man/man1/*.1.gz
-%{_datadir}/gnome/help/gnome-packagekit
+%{_datadir}/help/*/gnome-packagekit/figures/*.png
+%{_datadir}/help/*/gnome-packagekit/index.docbook
+%{_datadir}/help/*/gnome-packagekit/legal.xml
 %{python_sitelib}/packagekit/*py*
-%{_datadir}/omf/gnome-packagekit
 %{_datadir}/applications/gpk-*.desktop
 %{_datadir}/dbus-1/services/org.freedesktop.PackageKit.service
 %{_datadir}/glib-2.0/schemas/org.gnome.packagekit.gschema.xml
