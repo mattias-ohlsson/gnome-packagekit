@@ -50,6 +50,7 @@ BuildRequires: upower-devel >= 0.9.0
 BuildRequires: docbook-utils
 BuildRequires: systemd-devel
 BuildRequires: polkit-devel
+BuildRequires: itstool
 
 # obsolete sub-package
 Obsoletes: gnome-packagekit-extra <= 2.91.1
