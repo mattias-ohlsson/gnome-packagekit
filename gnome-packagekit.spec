@@ -2,7 +2,7 @@
 
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
-Version:   3.5.4
+Version:   3.5.90
 Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
@@ -124,6 +124,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/gnome-packagekit/gpk-service-pack.ui
 
 %changelog
+* Tue Aug 28 2012 Richard Hughes <hughsient@gmail.com> - 3.5.90-1
+- Update to 3.5.90
+
 * Tue Jul 17 2012 Richard Hughes <hughsient@gmail.com> - 3.5.4-1
 - Update to 3.5.4
 
