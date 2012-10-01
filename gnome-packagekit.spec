@@ -3,13 +3,14 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
 Version:   3.6.0
-Release:   1%{?dist}
+Release:   2%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
 Source0:   http://download.gnome.org/sources/gnome-packagekit/3.6/%{name}-%{version}.tar.xz
 
 Requires:  gnome-icon-theme
+Requires:  gnome-settings-daemon-updates
 Requires:  dbus-x11 >= 1.1.2
 Requires:  PackageKit >= 0.5.0
 Requires:  PackageKit-libs >= 0.5.0
@@ -18,8 +19,6 @@ Requires:  shared-mime-info
 Requires:  iso-codes
 Requires:  libcanberra >= 0.10
 Requires:  upower >= 0.9.0
-Obsoletes: pirut < 1.3.31-2
-Provides:  pirut = 1.3.31-2
 
 # required because KPackageKit provides exactly the same interface
 Provides: PackageKit-session-service
@@ -51,10 +50,6 @@ BuildRequires: docbook-utils
 BuildRequires: systemd-devel
 BuildRequires: polkit-devel
 BuildRequires: itstool
-
-# obsolete sub-package
-Obsoletes: gnome-packagekit-extra <= 2.91.1
-Provides: gnome-packagekit-extra
 
 %description
 gnome-packagekit provides session applications for the PackageKit API.
@@ -126,6 +121,10 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/gnome-packagekit/gpk-service-pack.ui
 
 %changelog
+* Fri Sep 28 2012 Peter Robinson <pbrobinson@fedoraproject.org> - 3.6.0-2
+- Depend on gnome-settings-daemon-updates. #699348
+- Drop ancient obsoletes
+
 * Tue Sep 25 2012 Matthias Clasen <mclasen@redhat.com> - 3.6.0-1
 - Update to 3.6.0
 
