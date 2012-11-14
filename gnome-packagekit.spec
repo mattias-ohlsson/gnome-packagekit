@@ -1,5 +1,3 @@
-%{!?python_sitelib: %define python_sitelib %(python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
-
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
 Version:   3.6.1
@@ -24,27 +22,24 @@ Requires:  upower >= 0.9.0
 Provides: PackageKit-session-service
 
 BuildRequires: glib2-devel >= 2.25.8
-BuildRequires: gtk2-devel >= 2.18.1
-BuildRequires: libwnck-devel
+BuildRequires: gtk3-devel
 BuildRequires: dbus-devel
 BuildRequires: dbus-glib-devel
 BuildRequires: libnotify-devel >= 0.7.0
 BuildRequires: gnome-panel-devel
-BuildRequires: scrollkeeper
-BuildRequires: gnome-doc-utils >= 0.3.2
 BuildRequires: desktop-file-utils
 BuildRequires: gettext
 BuildRequires: libtool
 BuildRequires: cairo-devel
 BuildRequires: startup-notification-devel
 BuildRequires: perl(XML::Parser)
-BuildRequires: gnome-doc-utils
 BuildRequires: PackageKit-devel >= 0.5.0
 BuildRequires: intltool
 BuildRequires: xorg-x11-proto-devel
 BuildRequires: fontconfig-devel
 BuildRequires: libcanberra-devel
 BuildRequires: libgudev1-devel
+BuildRequires: libxslt
 BuildRequires: upower-devel >= 0.9.0
 BuildRequires: docbook-utils
 BuildRequires: systemd-devel
@@ -60,7 +55,7 @@ removing packages on your system.
 %setup -q
 
 %build
-%configure --disable-scrollkeeper --enable-systemd
+%configure --enable-systemd
 make %{?_smp_mflags}
 
 %install
@@ -96,7 +91,6 @@ gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 
 %files -f %{name}.lang
-%defattr(-,root,root,-)
 %doc AUTHORS COPYING NEWS README
 %{_bindir}/gpk-*
 %dir %{_datadir}/gnome-packagekit
@@ -110,19 +104,16 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/icons/hicolor/*/*/*.png
 %{_datadir}/icons/hicolor/scalable/*/*.svg*
 %{_datadir}/man/man1/*.1.gz
-%{_datadir}/help/*/gnome-packagekit/figures/*.png
-%{_datadir}/help/*/gnome-packagekit/index.docbook
-%{_datadir}/help/*/gnome-packagekit/legal.xml
 %{python_sitelib}/packagekit/*py*
 %{_datadir}/applications/gpk-*.desktop
 %{_datadir}/dbus-1/services/org.freedesktop.PackageKit.service
 %{_datadir}/glib-2.0/schemas/org.gnome.packagekit.gschema.xml
 %{_datadir}/GConf/gsettings/org.gnome.packagekit.gschema.migrate
-%{_datadir}/gnome-packagekit/gpk-service-pack.ui
 
 %changelog
 * Wed Nov 14 2012 Kalev Lember <kalevlember@gmail.com> - 3.6.1-1
 - Update to 3.6.1
+- Minor spec file cleanup
 
 * Fri Sep 28 2012 Peter Robinson <pbrobinson@fedoraproject.org> - 3.6.0-2
 - Depend on gnome-settings-daemon-updates. #699348
