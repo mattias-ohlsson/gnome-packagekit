@@ -2,8 +2,8 @@
 
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
-Version:   3.6.0
-Release:   2%{?dist}
+Version:   3.6.1
+Release:   1%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
@@ -121,6 +121,9 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/gnome-packagekit/gpk-service-pack.ui
 
 %changelog
+* Wed Nov 14 2012 Kalev Lember <kalevlember@gmail.com> - 3.6.1-1
+- Update to 3.6.1
+
 * Fri Sep 28 2012 Peter Robinson <pbrobinson@fedoraproject.org> - 3.6.0-2
 - Depend on gnome-settings-daemon-updates. #699348
 - Drop ancient obsoletes
