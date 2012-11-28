@@ -1,11 +1,14 @@
 Summary:   Session applications to manage packages
 Name:      gnome-packagekit
 Version:   3.6.1
-Release:   1%{?dist}
+Release:   2%{?dist}
 License:   GPLv2+
 Group:     Applications/System
 URL:       http://www.packagekit.org
 Source0:   http://download.gnome.org/sources/gnome-packagekit/3.6/%{name}-%{version}.tar.xz
+
+# Already upstream
+Patch0:    0001-Don-t-crash-if-the-window-that-invoked-the-task-exit.patch
 
 Requires:  gnome-icon-theme
 Requires:  gnome-settings-daemon-updates
@@ -53,6 +56,7 @@ removing packages on your system.
 
 %prep
 %setup -q
+%patch0 -p1 -b .xid-crash
 
 %build
 %configure --enable-systemd
@@ -111,6 +115,11 @@ glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
 %{_datadir}/GConf/gsettings/org.gnome.packagekit.gschema.migrate
 
 %changelog
+* Wed Nov 28 2012 Richard Hughes <hughsient@gmail.com> - 3.6.1-2
+- Don't crash if the window that invoked the task exits before
+  the task starts up.
+- Resolves: #756208
+
 * Wed Nov 14 2012 Kalev Lember <kalevlember@gmail.com> - 3.6.1-1
 - Update to 3.6.1
 - Minor spec file cleanup
