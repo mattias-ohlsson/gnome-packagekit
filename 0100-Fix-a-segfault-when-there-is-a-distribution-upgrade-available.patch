@@ -1,0 +1,40 @@
+From a547582193fcee431786a73c3967411b98fd9bde Mon Sep 17 00:00:00 2001
+From: Richard Hughes <richard@hughsie.com>
+Date: Fri, 05 Oct 2012 21:38:35 +0000
+Subject: Fix a segfault when there is a distribution upgrade available
+
+Resolves: https://bugzilla.gnome.org/show_bug.cgi?id=685579
+---
+(limited to 'src/gpk-update-viewer.c')
+
+diff --git a/src/gpk-update-viewer.c b/src/gpk-update-viewer.c
+index 04ba4ee..142bf5b 100644
+--- a/src/gpk-update-viewer.c
++++ b/src/gpk-update-viewer.c
+@@ -1459,14 +1459,16 @@ gpk_update_viewer_reconsider_info (void)
+ 	gtk_button_set_label (GTK_BUTTON (widget), title);
+ 
+ 	/* no updates */
+-	len = update_array->len;
+-	if (len == 0) {
+-		gpk_update_viewer_modal_error_with_timeout (
+-				/* TRANSLATORS: title: nothing to do */
+-				_("All software is up to date"),
+-				/* TRANSLATORS: tell the user the problem */
+-				_("There are no software updates available for your computer at this time."));
+-		goto out;
++	if (update_array != NULL) {
++		len = update_array->len;
++		if (len == 0) {
++			gpk_update_viewer_modal_error_with_timeout (
++					/* TRANSLATORS: title: nothing to do */
++					_("All software is up to date"),
++					/* TRANSLATORS: tell the user the problem */
++					_("There are no software updates available for your computer at this time."));
++			goto out;
++		}
+ 	}
+ 
+ 	/* use correct status pane */
+--
+cgit v0.9.0.2
